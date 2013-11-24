@@ -31,10 +31,10 @@ module gearbox_tb();
         @(negedge(clk));
         shift_in = 0;
         shift_out = 1;
-    #10
+    #10 // for a defined filling of the buffer
         @(negedge(clk));
         shift_in = 0;
-        shift_out = 0;
+        shift_out = 1;
     #100
         $stop;
     end

@@ -34,7 +34,7 @@ module gearbox
             // full signal has to be added 
             if(shift_in == 1) //new data available
             begin
-                WR_addr <= WR_addr+4; // when full condition do not write has to be added
+                WR_addr <= WR_addr+4; // when full condition do not write
             end
             if(shift_out == 1 && distance>=5) //want to read
             begin
