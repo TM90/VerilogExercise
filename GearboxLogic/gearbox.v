@@ -1,3 +1,6 @@
+// Modulo instead of internal signals
+// 2 CLKs
+
 module gearbox
 (
     input clk,
@@ -26,7 +29,7 @@ module gearbox
     wire[4:0] rd_addr_int4;
 
     assign distance = (WR_addr < RD_addr) ? WR_addr+32-RD_addr : WR_addr-RD_addr;
-    assign full = (distance > 27) ? 1 : 0; // set full signal when WR_addr is max_addr-1     
+    assign full = (distance >= 27) ? 1 : 0; // set full signal when WR_addr is max_addr-1     
     
     // to get the an overflow for out of buffer range 
     assign wr_addr_int0 = WR_addr;
