@@ -28,7 +28,7 @@ module gearbox_tb();
         shift_in = 1;
         shift_out = 1;
     #2.5
-	    @(negedge(clk_400));
+	   . @(negedge(clk_400));
         data_in = 16'h8765;
     #25 // for no filling of the buffer
         @(negedge(clk_400));

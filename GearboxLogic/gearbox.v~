@@ -87,7 +87,6 @@ module gearbox
             data_out[19:16] <= buffer[(RD_addr + 4) % 32];
         end*/
     end
-
     always @(posedge clk_320MHz)
     begin
         if(shift_out == 1 && distance >= 5)

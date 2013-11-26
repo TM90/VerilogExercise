@@ -1,0 +1,50 @@
+irun: 11.10-s076: (c) Copyright 1995-2013 Cadence Design Systems, Inc.
+TOOL:	irun	11.10-s076: Started on Nov 26, 2013 at 13:42:13 CET
+irun
+	-access +rwc
+	-gui
+	-f gearbox.f
+		../common/clk_gen.v
+		gearbox.v
+		gearbox_tb.v
+Recompiling... reason: file './gearbox_tb.v' is newer than expected.
+	expected: Tue Nov 26 13:38:40 2013
+	actual:   Tue Nov 26 13:42:11 2013
+file: gearbox_tb.v
+	module worklib.gearbox_tb:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		gearbox_tb
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.gearbox_tb:v <0x7958816a>
+			streams:   5, words:  4796
+	Loading native compiled code:     .................... Done
+	Building instance specific data structures.
+	Design hierarchy summary:
+		              Instances  Unique
+		Modules:              4       3
+		Registers:           11      10
+		Scalar wires:         7       -
+		Vectored wires:       3       -
+		Always blocks:        6       5
+		Initial blocks:       3       2
+		Cont. assignments:    2       2
+		Pseudo assignments:   4       4
+	Writing initial simulation snapshot: worklib.gearbox_tb:v
+
+-------------------------------------
+Relinquished control to SimVision...
+ncsim> 
+ncsim> source /opt0/eda/cadence/INCISIV111/tools/inca/files/ncsimrc
+ncsim> database -open waves -into waves.shm -default
+Created default SHM database waves
+ncsim> probe -create -shm gearbox_tb.clk_320 gearbox_tb.clk_400 gearbox_tb.data_in gearbox_tb.data_out gearbox_tb.full gearbox_tb.res_n gearbox_tb.shift_in gearbox_tb.shift_out gearbox_tb.valid_out
+Created probe 1
+ncsim> run
+Simulation stopped via $stop(1) at time 312 NS + 2
+ncsim> ^C
+ncsim> exit
+TOOL:	irun	11.10-s076: Exiting on Nov 26, 2013 at 13:42:52 CET  (total: 00:00:39)
