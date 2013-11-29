@@ -42,7 +42,6 @@ module gearbox
         begin
             valid_out <= 0;
             RD_addr <= 4'b0000;
-            //WR_addr <= 4'b0000;
         end
         else 
         begin
