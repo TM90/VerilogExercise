@@ -24,8 +24,6 @@ module gearbox
     begin
         if(res_n == 0)
         begin
-            //valid_out <= 0;
-            //RD_addr <= 4'b0000;
             WR_addr <= 4'b0000;
         end
         else
@@ -35,15 +33,6 @@ module gearbox
             begin
                 WR_addr <= WR_addr + 4; // when full condition do not write has to be added
             end
-            /*if(shift_out == 1 && distance >= 5) //want to read
-            begin
-                valid_out <= 1;
-                RD_addr <= RD_addr + 5;
-            end
-            else
-            begin
-                valid_out <= 0;
-            end*/
         end
     end
 
@@ -78,14 +67,6 @@ module gearbox
             buffer[(WR_addr + 2) % 32] <= data_in[11:8];
             buffer[(WR_addr + 3) % 32] <= data_in[15:12];
         end
-        /*if(shift_out == 1 && distance >= 5)
-        begin
-            data_out[3:0] <= buffer[RD_addr];
-            data_out[7:4] <= buffer[(RD_addr + 1) % 32];
-            data_out[11:8] <= buffer[(RD_addr + 2) % 32];
-            data_out[15:12] <= buffer[(RD_addr + 3) % 32];
-            data_out[19:16] <= buffer[(RD_addr + 4) % 32];
-        end*/
     end
 
     always @(posedge clk_320MHz)
