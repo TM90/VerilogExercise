@@ -22,7 +22,7 @@ module fifo_unit
     always @(shift_out,shift_in,out_empty_n_reg_next,empty_n_reg_before)
     begin
         case ({shift_out,shift_in,out_empty_reg_next,empty_reg_before})
-            0: empty_n
+            0: f_out
         endcase
     end 
     // control register
