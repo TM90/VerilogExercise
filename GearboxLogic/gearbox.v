@@ -1,4 +1,4 @@
-// 2 CLKs
+// Author: Sebastian Wittka, Tobias Markus
 
 module gearbox
 (
@@ -45,10 +45,13 @@ module gearbox
         end
         else 
         begin
-            if(shift_out == 1 && distance >= 5) //want to read
+            if(distance >= 5) //want to read
             begin
                 valid_out <= 1;
-                RD_addr <= RD_addr + 5;
+                if(shift_out == 1)
+                begin
+                    RD_addr <= RD_addr + 5;
+                end
             end
             else
             begin
