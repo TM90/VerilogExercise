@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module counter_tb();
 
     wire clk;

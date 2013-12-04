@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module lfsr_tb();
 
   wire clk;

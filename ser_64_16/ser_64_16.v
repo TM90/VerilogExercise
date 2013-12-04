@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module ser_64_16 (
 	input clk,
 	input res_n,

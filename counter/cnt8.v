@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module cnt8(clk,res_n,enable,clear,cnt_out);
 
     input clk;

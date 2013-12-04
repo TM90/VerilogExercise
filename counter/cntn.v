@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module cntn#(
 	parameter n=10)
 	(input clk,

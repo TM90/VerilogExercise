@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module gearbox_tb();
 
     wire clk_400;

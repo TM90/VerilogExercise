@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module ser_64_16_tb();
 
     wire clk;

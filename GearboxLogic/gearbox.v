@@ -1,5 +1,4 @@
-// Author: Sebastian Wittka, Tobias Markus
-
+//Authors: Sebastian Wittka, Tobias Markus
 module gearbox
 (
     input clk_400MHz,

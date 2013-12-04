@@ -1,4 +1,4 @@
-// Author: Sebastian Wittka, Tobias Markus
+//Authors: Sebastian Wittka, Tobias Markus
 module fifo_unit
 #(
     parameter WIDTH = 4

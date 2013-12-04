@@ -1,3 +1,4 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module lfsr #(
     parameter num_reg = 3,
     parameter[63:0] poly =7   
