@@ -17,7 +17,6 @@ module fifo_unit
     output reg out_empty_reg,
     output reg out_empty
 );
-    reg f_out;
     // control multiplexer
     always @(shift_out,shift_in,out_empty_n_reg_next,empty_n_reg_before)
     begin
