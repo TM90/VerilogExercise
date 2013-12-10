@@ -1,4 +1,14 @@
 //Authors: Sebastian Wittka, Tobias Markus
+
+module module_name
+#(
+    parameter parameter_name
+)
+(
+    input i_name,
+    output o_name
+)
+
 module fifo_unit
 #(
     parameter WIDTH = 4
