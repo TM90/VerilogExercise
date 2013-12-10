@@ -18,32 +18,43 @@ module fifo_unit
     input res_n,
     input[WIDTH-1:0] si,
     input[WIDTH-1:0] so,
-    input reg empty_n,
+    input empty_n_before,
     input shift_out,
     input empty_n_reg_next,
     input empty_n_reg_before,
     input shift_in,
     output reg[WIDTH-1:0] out,
-    output reg out_empty_reg,
-    output reg out_empty
+    output reg out_empty_n_reg,
+	output wire out_empty_n
 );
-    // control multiplexer
+    // control multiplexer (f)
+    assign out_empty_n = (~shift_out & empty_n_reg_next) | (~shift_out & shift_in);
     always @(shift_out,shift_in,out_empty_n_reg_next,empty_n_reg_before)
     begin
-        case ({shift_out,shift_in,out_empty_reg_next,empty_reg_before})
-            0: empty_n
+        case ({out_empty_reg_next,empty_reg_before})
+            0: out_empty_n <= 0;
+            
         endcase
-    end 
+    end
+	 
     // control register
     always @(posedge clk, negedge res_n)
     begin
         
     end
 
+    // data multiplexer (g)
+	 always @()
+	 begin
+	     case({})
+		  
+		  endcase
+    end
+
     // data path 
     always @(posedge clk, negedge res_n)    
     begin
-        if(res_n = 0)
+        if(res_n == 0)
         begin
             out <=  {WIDTH{1'b0}};
         end

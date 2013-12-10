@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-//Authors: Sebastian Wittka, Tobias Markus
-=======
 // Author: Sebastian Wittka, Tobias Markus 
->>>>>>> 6239dd8511dcc9ed1fd499d88ebbac6c4b93011b
 module ser_64_16_tb();
 
     wire clk;
