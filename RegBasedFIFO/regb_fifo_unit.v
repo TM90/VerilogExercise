@@ -15,13 +15,15 @@ module fifo_unit
     input shift_in,
     output reg[WIDTH-1:0] out,
     output reg out_empty_n_reg,
-	 output wire out_empty_n
+	output wire out_empty_n
 );
     // control multiplexer (f)
+    assign out_empty_n = (~shift_out & empty_n_reg_next) | (~shift_out & shift_in);
     always @(shift_out,shift_in,out_empty_n_reg_next,empty_n_reg_before)
     begin
-        case ({shift_out,shift_in,out_empty_reg_next,empty_reg_before})
-            0: empty_n;
+        case ({out_empty_reg_next,empty_reg_before})
+            0: out_empty_n <= 0;
+            
         endcase
     end
 	 
