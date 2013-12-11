@@ -1,7 +1,7 @@
 module RAMfifo
 	#(
-	    parameter WIDTH, 
-	    parameter DEPTH
+	    parameter WIDTH = 8, 
+	    parameter DEPTH = 512
 	(
 	    input clk,
 	    input res_n,
@@ -10,7 +10,7 @@ module RAMfifo
 	    input[WIDTH-1:0] wdata,
 	    output full,
 	    output empty,
-	    output reg[WIDTH-1:0]rdata
+	    output reg[WIDTH-1:0] rdata
 	);
 
 	reg[WIDTH-1:0] buffer [0:2**DEPTH-1];
@@ -19,16 +19,39 @@ module RAMfifo
 
 	assign distance = (WR_addr < RD_addr) ? WR_addr+(2**DEPTH-1)-RD_addr : WR_addr-RD_addr;   
 	assign full = (distance >= 2**DEPTH-2) ? 1 : 0; // set full signal when WR_addr is max_addr-1     
+	assign empty = distance = 0 ? 1 : 0;
 
+	// control path 
 	always @(posedge clk or negedge res_n) 
 	begin
 		if (res_n == 0) 
 		begin
-			// reset	
+			WR_addr <= {DEPTH{1'b0}};
+			RD_addr <= {DEPTH{1'b0}};	
 		end
 		else 
 		begin
-			if(shift_in == 1 && full==0)	
+			if (shift_in == 1 && full==0)
+			begin
+				WR_addr <= WR_addr + 1;
+			end 
+			if (shift_out == 1 && distance>=1)
+			begin
+				RD_addr <= RD_addr + 1;
+			end	
+		end
+	end
+
+	// data path 
+	always @(posedge(clk))
+	begin
+		if(shift_in == 1 && full == 0)
+		begin
+			buffer[WR_addr] <= wdata;
+		end
+		if(shift_out == 1 && distance >=1)
+		begin
+			rdata <= buffer[RD_addr];
 		end
 	end
 
