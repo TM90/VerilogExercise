@@ -1,7 +1,8 @@
+//Authors: Sebastian Wittka, Tobias Markus
 module RAMfifo
 	#(
 	    parameter WIDTH = 8, 
-	    parameter DEPTH = 512
+	    parameter DEPTH = 9
 	(
 	    input clk,
 	    input res_n,
