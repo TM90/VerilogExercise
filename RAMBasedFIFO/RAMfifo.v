@@ -21,7 +21,7 @@ module RAMfifo
 	assign distance = (WR_addr < RD_addr) ? WR_addr+(2**DEPTH-1)-RD_addr : WR_addr-RD_addr;   
 	assign full = (distance >= 2**DEPTH-2) ? 1 : 0; // set full signal when WR_addr is max_addr-1     
 	assign empty = distance = 0 ? 1 : 0;
-
+	
 	// control path 
 	always @(posedge clk or negedge res_n) 
 	begin
