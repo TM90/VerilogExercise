@@ -13,6 +13,7 @@ module RAMfifo_tb ();
 	wire empty;
 	wire [WIDTH-1:0] rdata;
 	integer i;
+	
 	clk_gen #(.period(PERIOD)) clk_gen_I (.clk_out(clk));
 	RAMfifo #(.WIDTH(WIDTH),.DEPTH(DEPTH)) RAMfifo_I (.clk(clk),.res_n(res_n), .shift_in(shift_in),
 			.shift_out(shift_out),.wdata(wdata),.full(full),.empty(empty),.rdata(rdata));
@@ -60,4 +61,5 @@ module RAMfifo_tb ();
 		empty_fifo();
 		$stop;
 	end
+	
 endmodule
