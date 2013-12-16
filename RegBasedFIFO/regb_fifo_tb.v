@@ -55,6 +55,7 @@ module regb_fifo_tb();
 		full_fifo();
 		#50
 		empty_fifo();
+		#50
 		$stop;
 	end
 

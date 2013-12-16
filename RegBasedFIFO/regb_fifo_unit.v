@@ -19,26 +19,17 @@ module regb_fifo_unit
 	output wire out_empty_n
 );
 	wire empty, enable;
+	reg select;
 	// f
 	assign empty = (empty_n_reg_next | shift_in) & ~shift_out;
 	assign enable = shift_out | empty_n_reg_next | ~empty_n_reg_before;
 
-    // control multiplexer (f)
-    assign out_empty_n = (~shift_out & empty_n_reg_next) | (~shift_out & shift_in);
-    always @(shift_out,shift_in,out_empty_n_reg_next,empty_n_reg_before)
-    begin
-        case ({out_empty_reg_next,empty_reg_before})
-            0: out_empty_n <= 0;
-            
-        endcase
-    end
-	 
-    // control register
+   // control register
     always @(posedge clk, negedge res_n)
     begin
         if(res_n == 0)
 		  begin
-		      empty_n_reg = 0;
+		      out_empty_n_reg = 0;
 		  end
 		  else
 		  begin
@@ -57,7 +48,7 @@ module regb_fifo_unit
 				2'b01: select <= 2'b01;
 				2'b10:
 				begin
-					 if(empty_n_reg == 1)
+					 if(out_empty_n_reg == 1)
 					 begin
 					     select <= 2'b00;	  
 					 end
