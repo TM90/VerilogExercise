@@ -12,8 +12,8 @@ module fifo_tb();
   
   task_tb task_tb();
   clk_gen clk_gen_I(clk);
-  fifo (.WIDTH(WIDTH), .N(5)) fifo_I(.clk(clk), .res_n(res_n), .full(full), .shift_in(shift_in),
-  (.in(in), .empty(empty), .shift_out(shift_out), .out(out));
+  fifo #(.WIDTH(WIDTH), .N(5)) fifo_I(.clk(clk), .res_n(res_n), .full(full), .shift_in(shift_in),
+  .in(in), .empty(empty), .shift_out(shift_out), .out(out));
 endmodule
 
 module task_tb ();
