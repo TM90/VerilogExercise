@@ -22,7 +22,7 @@ module RAMfifo
 
 	assign distance = (WR_addr < RD_addr) ? WR_addr+(2**DEPTH-1)-RD_addr : WR_addr-RD_addr;   
 	assign full = (distance >= 2**DEPTH-2) ? 1 : 0; // set full signal when WR_addr is max_addr-1     
-	assign empty = distance == 0 ? 1 : 0;
+	assign empty = (distance == 0 && shift_in == 0) ? 1 : 0;
 
 	// control path 
 	always @(posedge clk or negedge res_n) 
@@ -34,11 +34,11 @@ module RAMfifo
 		end
 		else 
 		begin
-			if (shift_in == 1 && full==0)
+			if (shift_in == 1 && full == 0)
 			begin
 				WR_addr <= WR_addr + 1;
 			end 
-			if (shift_out == 1 && distance>=1)
+			if (shift_out == 1 && distance>=1 || shift_in == 1 && shift_out == 1)
 			begin
 				RD_addr <= RD_addr + 1;
 			end	
@@ -52,9 +52,13 @@ module RAMfifo
 		begin
 			buffer[WR_addr] <= wdata;
 		end
-		if(shift_out == 1 && distance >=1)
+		if(shift_out == 1 && distance>=1)
 		begin
 			rdata <= buffer[RD_addr];
+		end
+		if(shift_out == 1 && shift_in == 1 && distance == 0) // when fifo is empty and data is comming and also wanted 
+		begin
+			rdata <= wdata;			// the data is streamed through
 		end
 	end
 
