@@ -1,4 +1,5 @@
 //Authors: Sebastian Wittka, Tobias Markus
+
 module fifo_unit
 #(
     parameter WIDTH = 4
@@ -15,12 +16,22 @@ module fifo_unit
     input shift_in,
     output reg[WIDTH-1:0] out,
     output reg out_empty_n_reg,
-	 output wire out_empty_n
+	output wire out_empty_n
 );
 	wire empty, enable;
 	// f
 	assign empty = (empty_n_reg_next | shift_in) & ~shift_out;
 	assign enable = shift_out | empty_n_reg_next | ~empty_n_reg_before;
+
+    // control multiplexer (f)
+    assign out_empty_n = (~shift_out & empty_n_reg_next) | (~shift_out & shift_in);
+    always @(shift_out,shift_in,out_empty_n_reg_next,empty_n_reg_before)
+    begin
+        case ({out_empty_reg_next,empty_reg_before})
+            0: out_empty_n <= 0;
+            
+        endcase
+    end
 	 
     // control register
     always @(posedge clk, negedge res_n)
