@@ -9,8 +9,10 @@ input wire shift_out,
 output wire[WIDTH-1:0] rdata,
 output wire empty,
 output wire full);
+
 wire [N:0] unit_out[WIDTH-1:0], unit_so[WIDTH-1:0], unit_empty_n_reg_out,
 unit_empty_n_reg_before_in, unit_empty_n_reg_next_in, unit_empty_n_out, unit_g_in;
+
 generate
   genvar i;
   for(i=0; i<N; i=i+1)
@@ -25,6 +27,7 @@ generate
       assign unit_empty_n_reg_next_in[i] = unit_empty_n_reg_out[i+1];
 		assign g_in[i+1] = unit_empty_n_out[i];
     end
+  
   assign unit_so[0] = {WIDTH{1'b0}};
   assign rdata = unit_out[N-1];
   assign unit_empty_n_reg_before_in[0] = 1'b1;
@@ -32,4 +35,7 @@ generate
   assign empty_n_reg_next_in[N-1] = 1;
   assign g_in[0] = shift_in;
   assign full = unit_empty_n_reg_out[0];
+
 endgenerate
+
+endmodule 
