@@ -1,6 +1,6 @@
 //Authors: Sebastian Wittka, Tobias Markus
 
-module fifo #(parameter N=5, parameter WIDTH=4)
+module regb_fifo #(parameter N=5, parameter WIDTH=4)
 (input wire clk,
 input wire res_n,
 input wire[WIDTH-1:0] wdata,
@@ -15,7 +15,7 @@ generate
   genvar i;
   for(i=0; i<N; i=i+1)
     begin: fifo
-      fifo_unit #(.WIDTH(WIDTH)) fifo_unit_I(.clk(clk), .res_n(res_n), .si(wdata), .so(unit_so[i]),
+      regb_fifo_unit #(.WIDTH(WIDTH)) regb_fifo_unit_I(.clk(clk), .res_n(res_n), .si(wdata), .so(unit_so[i]),
       .empty_n_before(unit_g_in[i]), .shift_out(shift_out),
 		.empty_n_reg_next(unit_empty_n_reg_next_in[i]),
       .empty_n_reg_before(unit_empty_n_reg_before_in[i]), .shift_in(shift_in), .out(unit_out),

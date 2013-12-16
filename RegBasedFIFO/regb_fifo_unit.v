@@ -1,6 +1,6 @@
 //Authors: Sebastian Wittka, Tobias Markus
 
-module fifo_unit
+module regb_fifo_unit
 #(
     parameter WIDTH = 4
 )

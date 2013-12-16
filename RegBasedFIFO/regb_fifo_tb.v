@@ -1,5 +1,5 @@
 //Authors: Sebastian Wittka, Tobias Markus
-module fifo_tb();
+module regb_fifo_tb();
 
   parameter WIDTH = 8;
   parameter DEPTH = 5;
@@ -15,7 +15,7 @@ module fifo_tb();
   reg shift_out;
   
   clk_gen #(.period(PERIOD)) clk_gen_I (.clk_out(clk));
-  fifo #(.WIDTH(WIDTH), .N(DEPTH)) fifo_I(.clk(clk), .res_n(res_n), .full(full), .shift_in(shift_in),
+  regb_fifo #(.WIDTH(WIDTH), .N(DEPTH)) regb_fifo_I(.clk(clk), .res_n(res_n), .full(full), .shift_in(shift_in),
   .wdata(wdata), .empty(empty), .shift_out(shift_out), .rdata(rdata));
 
 	task empty_fifo;
