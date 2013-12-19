@@ -45,21 +45,33 @@ module RAMfifo
 		end
 	end
 
+	integer i;
 	// data path 
-	always @(posedge(clk))
+	always @(posedge clk or negedge res_n)
 	begin
-		if(shift_in == 1 && full == 0)
+		if(res_n == 0)
 		begin
-			buffer[WR_addr] <= wdata;
+			// init buffer on reset with zeros
+			for (i=0;i<2**DEPTH;i=i+1) 
+			begin
+				buffer[i] <= {WIDTH{1'b0}};
+			end
 		end
-		if(shift_out == 1 && distance>=1)
+		else
 		begin
-			rdata <= buffer[RD_addr];
-		end
-		if(shift_out == 1 && shift_in == 1 && distance == 0) // when fifo is empty and data is comming and also wanted 
-		begin
-			rdata <= wdata;			// the data is streamed through
+			if(shift_in == 1 && full == 0)
+			begin
+				buffer[WR_addr] <= wdata;
+			end
+			if(shift_out == 1 && distance>=1)
+			begin
+				rdata <= buffer[RD_addr];
+			end
+			if(shift_out == 1 && shift_in == 1 && distance == 0) // when fifo is empty, data is comming and also wanted 
+			begin
+				rdata <= wdata;			// the data is streamed through
+			end
 		end
 	end
-
+	
 endmodule

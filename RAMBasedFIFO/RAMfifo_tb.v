@@ -4,6 +4,7 @@ module RAMfifo_tb ();
 	parameter WIDTH = 8;
 	parameter DEPTH = 8;
 	parameter PERIOD = 10;
+
 	wire clk;
 	reg res_n;
 	reg shift_in;
