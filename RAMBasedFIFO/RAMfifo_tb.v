@@ -73,7 +73,7 @@ module RAMfifo_tb ();
 		fifo_fill(2**DEPTH);
 		fifo_empty();
 		fifo_rw(2**DEPTH);
-		fifo_fill(40);
+		fifo_fill(2**DEPTH/8);
 		fifo_empty;
 		$stop;
 	end
