@@ -21,7 +21,7 @@ module RAMfifo
 	wire[DEPTH-1:0] distance;
 
 	assign distance = (WR_addr < RD_addr) ? WR_addr+(2**DEPTH-1)-RD_addr : WR_addr-RD_addr;   
-	assign full = (distance >= 2**DEPTH-2) ? 1 : 0; // set full signal when WR_addr is max_addr-1     
+	assign full = (distance >= 2**DEPTH-1) ? 1 : 0; // set full signal when WR_addr is max_addr-1     
 	assign empty = (distance == 0 && shift_in == 0) ? 1 : 0;
 
 	// control path 
