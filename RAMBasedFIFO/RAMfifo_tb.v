@@ -65,7 +65,7 @@ module RAMfifo_tb ();
 
 	initial 
 	begin
-		res_n <= 0; //is this .res_n a pointer ???
+		res_n <= 0;
 		shift_in <= 0;
 		shift_out <= 0;
 		#100
@@ -73,6 +73,8 @@ module RAMfifo_tb ();
 		fifo_fill(2**DEPTH);
 		fifo_empty();
 		fifo_rw(2**DEPTH);
+		fifo_fill(40);
+		fifo_empty;
 		$stop;
 	end
 	
