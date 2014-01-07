@@ -9,20 +9,19 @@ module regb_fifo_unit
     input res_n,
     input[WIDTH-1:0] si,
     input[WIDTH-1:0] so,
-    input empty_n_before,
     input shift_out,
     input empty_n_reg_next,
     input empty_n_reg_before,
     input shift_in,
     output reg[WIDTH-1:0] out,
-    output reg out_empty_n_reg,
-	output wire out_empty_n
+    output reg out_empty_n_reg
 );
 	wire empty, enable;
-	reg select;
+	reg [1:0] select;
 	// f
-	assign empty = (empty_n_reg_next | shift_in) & ~shift_out;
-	assign enable = shift_out | empty_n_reg_next | ~empty_n_reg_before;
+	assign empty = empty_n_reg_before | (~shift_out & empty_n_reg_next);
+	assign enable = (empty_n_reg_before | ~empty_n_reg_next | shift_in | shift_out) &
+	(empty_n_reg_before | ~empty_n_reg_next | ~shift_in | ~shift_out);
 
    // control register
     always @(posedge clk, negedge res_n)
