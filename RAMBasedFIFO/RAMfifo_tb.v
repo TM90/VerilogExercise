@@ -4,6 +4,7 @@ module RAMfifo_tb ();
 	parameter WIDTH = 8;
 	parameter DEPTH = 8;
 	parameter PERIOD = 10;
+
 	wire clk;
 	reg res_n;
 	reg shift_in;
@@ -72,6 +73,8 @@ module RAMfifo_tb ();
 		fifo_fill(2**DEPTH);
 		fifo_empty();
 		fifo_rw(2**DEPTH);
+		fifo_fill(2**DEPTH/8);
+		fifo_empty;
 		$stop;
 	end
 	
