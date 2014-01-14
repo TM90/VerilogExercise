@@ -3,96 +3,55 @@ module Arbiter
     (
         input clk,
 	    input res_n,
-        input req0,
-        input req1,
-        input req2,
-        output wire grant0,
-        output wire grant1,
-        output wire grant2
+        input wire[2:0] req,
+        output wire[2:0] grant
     );
     
     reg[2:0] state_reg;
-    assign grant0 = state_reg[0];
-    assign grant1 = state_reg[1];
-    assign grant2 = state_reg[2];
+    assign grant = state_reg;
 
     always @(posedge clk or negedge res_n) 
 	begin
         if(res_n == 0)
         begin
-            state_reg <= {3{1'b0}};
+            state_reg  <= {3{1'b0}};
+            grant <= {3{1'b0}};
         end
         else
         begin
-            case(state_reg)
-                3'b000:
-                    if (req0 == 1) 
-                    begin
-                        state_reg <= 3'b001;
-                    end
-                    else if (req1 == 1)
-                    begin
-                        state_reg <= 3'b010;
-                    end
-                    else if (req2 == 1)
-                    begin
-                        state_reg <= 3'b100;   
-                    end
-                3'b001:
-                    if (req0 == 0 && req1 == 0 && req2 == 0) 
-                    begin
-                        state_reg <= 3'b000;
-                    end
-                    else if (req1 == 1)
-                    begin
-                        state_reg <= 3'b010;
-                    end
-                    else if (req2 == 1)
-                    begin
-                        state_reg <= 3'b100;
-                    end
-                    else if (req0 == 1)
-                    begin
-                        state_reg <= 3'b001;    
-                    end
-                3'b010:
-                    if (req0 == 0 && req1 == 0 && req2 == 0) 
-                    begin
-                        state_reg <= 3'b000;
-                    end
-                    else if (req2 == 1)
-                    begin
-                        state_reg <= 3'b100;
-                    end
-                    else if (req0 == 1)
-                    begin
-                        state_reg <= 3'b001;
-                    end
-                    else if (req1 == 1)
-                    begin
-                        state_reg <= 3'b010;    
-                    end
-
-                3'b100:
-                    if (req0 == 0 && req1 == 0 && req2 == 0) 
-                    begin
-                        state_reg <= 3'b000;
-                    end
-                    else if (req0 == 1)
-                    begin
-                        state_reg <= 3'b001;
-                    end
-                    else if (req1 == 1)
-                    begin
-                        state_reg <= 3'b010;    
-                    end
-                    else if (req2 == 1)
-                    begin
-                        state_reg <= 3'b100;
-                    end
-                default: 
+            casex({state_reg, req})
+                // state 000
+                6'b000xx1:
+                    state_reg <= 3'b001;
+                6'b000x10:
+                    state_reg <= 3'b010;
+                6'b000100:
+                    state_reg <= 3'b100;
+                // state 001    
+                6'b001000:
+                    state_reg <= 3'b000;
+                6'b001x10:
+                    state_reg <= 3'b010;
+                6'b001100:
+                    state_reg <= 3'b100;
+                // state 010    
+                6'b010000:
+                    state_reg <= 3'b000;
+                6'b010001:
+                    state_reg <= 3'b001;
+                6'b01010x:
+                    state_reg <= 3'b100;
+                // state 100
+                6'b100000:
+                    state_reg <= 3'b000;
+                6'b1000x1:
+                    state_reg <= 3'b001;
+                6'b100010:
+                    state_reg <= 3'b010;
+                // the rest
+                default:
                     state_reg <= 3'b000;
             endcase
         end
     end
-endmodule 
+endmodule
