@@ -28,19 +28,19 @@ module regb_fifo_unit
     begin
         if(res_n == 0)
 		  begin
-		      out_empty_n_reg = 0;
+		      out_empty_n_reg <= 0;
 		  end
 		  else
 		  begin
 		     if(enable == 1)
 			  begin
-			      out_empty_n_reg = empty;
+			      out_empty_n_reg <= empty;
 			  end
 		  end
     end
 
     // data multiplexer (g)
-	 always @(shift_out,shift_in,out_empty_n_reg,empty_n_reg_before)
+	 always @(*)
 	 begin
 	     case({shift_in,shift_out})
             2'b00: select <= 2'b00;

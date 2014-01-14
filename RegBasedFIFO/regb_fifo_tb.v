@@ -9,6 +9,7 @@ module regb_fifo_tb();
   wire full;
   wire empty;
   wire[WIDTH-1:0] rdata;
+  reg counter;
   reg res_n;
   reg shift_in;
   reg[WIDTH-1:0] wdata;
@@ -45,16 +46,36 @@ module regb_fifo_tb();
 		end
 	endtask
 
+	task shift_fifo;
+		begin
+			while(counter != 0) 
+			begin
+				@(negedge(clk));
+			    shift_in <= 1;
+			    shift_out <= 1;
+			    wdata <= $random;
+                counter <= counter - 1;	
+			end
+      @(negedge(clk));
+      shift_in <= 0;
+      shift_out <= 0;
+		end
+	endtask
+
 	initial 
 	begin
+        counter = 3;
 		res_n <= 0;
 		shift_in <= 0;
 		shift_out <= 0;
 		#10
 		res_n <= 1;
+        #10
 		full_fifo();
 		#10
 		empty_fifo();
+        #10
+        shift_fifo();
 		#50
 		$stop;
 	end
