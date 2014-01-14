@@ -2,7 +2,7 @@
 
 module regb_fifo_unit
 #(
-    parameter WIDTH = 4
+    parameter WIDTH = 8
 )
 (
     input clk,

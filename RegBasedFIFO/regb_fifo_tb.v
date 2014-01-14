@@ -1,7 +1,7 @@
 //Authors: Sebastian Wittka, Tobias Markus
 module regb_fifo_tb();
 
-  parameter WIDTH = 8;
+  parameter WIDTH = 16;
   parameter DEPTH = 5;
   parameter PERIOD = 10;
   
@@ -50,10 +50,10 @@ module regb_fifo_tb();
 		res_n <= 0;
 		shift_in <= 0;
 		shift_out <= 0;
-		#100
+		#10
 		res_n <= 1;
 		full_fifo();
-		#50
+		#10
 		empty_fifo();
 		#50
 		$stop;
