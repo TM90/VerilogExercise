@@ -15,7 +15,6 @@ module Arbiter
         if(res_n == 0)
         begin
             state_reg  <= {3{1'b0}};
-            grant <= {3{1'b0}};
         end
         else
         begin
@@ -50,7 +49,7 @@ module Arbiter
                     state_reg <= 3'b010;
                 // the rest
                 default:
-                    state_reg <= 3'b000;
+                    state_reg <= state_reg;
             endcase
         end
     end
