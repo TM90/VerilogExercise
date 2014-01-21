@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<project pname='New Project' version="5.2">
+  <fsm fname='fsm_1' resetstate='1' numberofinputs='3' numberofoutputs='3'>
+    <ToolsParameters>
+    </ToolsParameters>
+    <globals>
+        <name>clk</name>
+        <name>res_n</name>
+    </globals>
+    <inputnames>
+        <name><![CDATA[req0]]></name>
+        <name><![CDATA[req1]]></name>
+        <name><![CDATA[req2]]></name>
+    </inputnames>
+    <outputnames>
+        <name><![CDATA[grant0]]></name>
+        <name><![CDATA[grant1]]></name>
+        <name><![CDATA[grant2]]></name>
+    </outputnames>
+    <state id='1' posx='-231' posy='-323.618' color='4294901760' >
+        <sname><![CDATA[IDLE]]></sname>
+        <output>000</output>
+    </state>
+    <state id='2' posx='54' posy='-325' color='4294901760' >
+        <sname><![CDATA[state0]]></sname>
+        <output>100</output>
+    </state>
+    <state id='3' posx='50' posy='-42' color='4294901760' >
+        <sname><![CDATA[state1]]></sname>
+        <output>010</output>
+    </state>
+    <state id='4' posx='-224' posy='-47' color='4294901760' >
+        <sname><![CDATA[state2]]></sname>
+        <output>001</output>
+    </state>
+    <trans id='5' color='0' textposx='-84' textposy='-327'>
+        <name><![CDATA[trans_1]]></name>
+        <default>0</default>
+        <start>1</start>
+        <end>2</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>1--</input>
+        </condition>
+    </trans>
+    <trans id='6' color='0' textposx='52.5' textposy='-184.5'>
+        <name><![CDATA[trans_2]]></name>
+        <default>0</default>
+        <start>2</start>
+        <end>3</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>01-</input>
+        </condition>
+    </trans>
+    <trans id='7' color='0' textposx='-85.5' textposy='-44'>
+        <name><![CDATA[trans_3]]></name>
+        <default>0</default>
+        <start>3</start>
+        <end>4</end>
+        <condition>
+            <cname><![CDATA[req1]]></cname>
+            <input>-01</input>
+        </condition>
+    </trans>
+    <trans id='8' color='0' textposx='-222' textposy='-186.5'>
+        <name><![CDATA[trans_4]]></name>
+        <default>0</default>
+        <start>4</start>
+        <end>1</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>000</input>
+        </condition>
+    </trans>
+    <trans id='9' color='0' textposx='-84.5' textposy='-187'>
+        <name><![CDATA[trans_5]]></name>
+        <default>0</default>
+        <start>4</start>
+        <end>2</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>10-</input>
+        </condition>
+    </trans>
+    <trans id='10' color='0' textposx='52.5' textposy='-184.5'>
+        <name><![CDATA[trans_6]]></name>
+        <default>0</default>
+        <start>3</start>
+        <end>2</end>
+        <condition>
+            <cname><![CDATA[req2]]></cname>
+            <input>100</input>
+        </condition>
+        <trackpoint posx='128' posy='-183' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='11' color='0' textposx='-87' textposy='-44.5'>
+        <name><![CDATA[trans_7]]></name>
+        <default>0</default>
+        <start>4</start>
+        <end>3</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>001</input>
+        </condition>
+        <trackpoint posx='-74' posy='12' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='12' color='0' textposx='-85' textposy='-186'>
+        <name><![CDATA[trans_8]]></name>
+        <default>0</default>
+        <start>2</start>
+        <end>4</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>001</input>
+        </condition>
+        <trackpoint posx='-45' posy='-139' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='13' color='0' textposx='-86.5' textposy='-184.5'>
+        <name><![CDATA[trans_9]]></name>
+        <default>0</default>
+        <start>3</start>
+        <end>1</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>000</input>
+        </condition>
+    </trans>
+    <trans id='14' color='0' textposx='-84.5' textposy='-326'>
+        <name><![CDATA[trans_10]]></name>
+        <default>0</default>
+        <start>2</start>
+        <end>1</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>000</input>
+        </condition>
+        <trackpoint posx='-93' posy='-355' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='15' color='0' textposx='-223.5' textposy='-187'>
+        <name><![CDATA[trans_11]]></name>
+        <default>0</default>
+        <start>1</start>
+        <end>4</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>001</input>
+        </condition>
+        <trackpoint posx='-267' posy='-184' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='16' color='0' textposx='-86.5' textposy='-184.5'>
+        <name><![CDATA[trans_12]]></name>
+        <default>0</default>
+        <start>1</start>
+        <end>3</end>
+        <condition>
+            <cname><![CDATA[req0]]></cname>
+            <input>010</input>
+        </condition>
+        <trackpoint posx='-133' posy='-138' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='18' color='0' textposx='-224' textposy='-47'>
+        <name><![CDATA[trans_14]]></name>
+        <default>0</default>
+        <start>4</start>
+        <end>4</end>
+        <condition>
+            <cname><![CDATA[req2]]></cname>
+            <input>--1</input>
+        </condition>
+        <trackpoint posx='-242.733' posy='21.846' link='0' linkid='0' join='0' color='0' />
+        <trackpoint posx='-285.616' posy='-29.9371' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='19' color='0' textposx='-231' textposy='-323.618'>
+        <name><![CDATA[trans_15]]></name>
+        <default>1</default>
+        <start>1</start>
+        <end>1</end>
+        <trackpoint posx='-253.252' posy='-381.091' link='0' linkid='0' join='0' color='0' />
+        <trackpoint posx='-209.56' posy='-394.846' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='20' color='0' textposx='54' textposy='-325'>
+        <name><![CDATA[trans_16]]></name>
+        <default>1</default>
+        <start>2</start>
+        <end>2</end>
+        <trackpoint posx='12.1367' posy='-408.601' link='0' linkid='0' join='0' color='0' />
+        <trackpoint posx='97.9024' posy='-400.51' link='0' linkid='0' join='0' color='0' />
+    </trans>
+    <trans id='21' color='0' textposx='50' textposy='-42'>
+        <name><![CDATA[trans_17]]></name>
+        <default>0</default>
+        <start>3</start>
+        <end>3</end>
+        <condition>
+            <cname><![CDATA[z]]></cname>
+            <input>-1-</input>
+        </condition>
+        <trackpoint posx='152.113' posy='-45.3102' link='0' linkid='0' join='0' color='0' />
+        <trackpoint posx='122.176' posy='7.282' link='0' linkid='0' join='0' color='0' />
+    </trans>
+  </fsm>
+</project>
