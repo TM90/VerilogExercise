@@ -23,7 +23,7 @@ fsm_1 fsm_1_I (
 );
 
  */
-module fsm_1 ( 
+module gen_Arbiter ( 
     input wire clk, 
     input wire res_n, 
 
