@@ -1,6 +1,0 @@
-mmap new -name fsm_1 -contents {
-    { 'b000 -label "IDLE" -linecolor #ff0000}
-    { 'b001 -label "state0" -linecolor #ff0000}
-    { 'b010 -label "state1" -linecolor #ff0000}
-    { 'b100 -label "state2" -linecolor #ff0000}
-}
