@@ -2,6 +2,9 @@
 <project pname='New Project' version="5.2">
   <fsm fname='fsm_1' resetstate='1' numberofinputs='3' numberofoutputs='3'>
     <ToolsParameters>
+        <Parameters userid="linux:hwsimu05">
+             <Parameter key="ui.generator.verilog.lastPath">/home/hwsimu05/VerilogExercise/Arbiter/FSMDesignerArbiter/gen_Arbiter.v</Parameter>
+        </Parameters>
     </ToolsParameters>
     <globals>
         <name>clk</name>
@@ -73,14 +76,14 @@
             <input>000</input>
         </condition>
     </trans>
-    <trans id='9' color='0' textposx='-84.5' textposy='-187'>
-        <name><![CDATA[trans_5]]></name>
+    <trans id='9' color='0' textposx='-80.6631' textposy='-215.777'>
+        <name><![CDATA[a]]></name>
         <default>0</default>
         <start>4</start>
         <end>2</end>
         <condition>
-            <cname><![CDATA[req0]]></cname>
-            <input>10-</input>
+            <cname><![CDATA[l]]></cname>
+            <input>1-0</input>
         </condition>
     </trans>
     <trans id='10' color='0' textposx='52.5' textposy='-184.5'>
@@ -101,7 +104,7 @@
         <end>3</end>
         <condition>
             <cname><![CDATA[req0]]></cname>
-            <input>001</input>
+            <input>010</input>
         </condition>
         <trackpoint posx='-74' posy='12' link='0' linkid='0' join='0' color='0' />
     </trans>
@@ -126,7 +129,7 @@
             <input>000</input>
         </condition>
     </trans>
-    <trans id='14' color='0' textposx='-84.5' textposy='-326'>
+    <trans id='14' color='0' textposx='-90.2553' textposy='-371.084'>
         <name><![CDATA[trans_10]]></name>
         <default>0</default>
         <start>2</start>
